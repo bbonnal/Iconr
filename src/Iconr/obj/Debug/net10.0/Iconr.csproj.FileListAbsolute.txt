@@ -1,0 +1,13 @@
+/mnt/c/Dev/btemp/iconr/src/Iconr/bin/Debug/net10.0/Iconr.deps.json
+/mnt/c/Dev/btemp/iconr/src/Iconr/bin/Debug/net10.0/Iconr.dll
+/mnt/c/Dev/btemp/iconr/src/Iconr/bin/Debug/net10.0/Iconr.pdb
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/Iconr.csproj.AssemblyReference.cache
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/Avalonia/Resources.Inputs.cache
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/Iconr.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/Iconr.AssemblyInfoInputs.cache
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/Iconr.AssemblyInfo.cs
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/Iconr.csproj.CoreCompileInputs.cache
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/Iconr.dll
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/refint/Iconr.dll
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/Iconr.pdb
+/mnt/c/Dev/btemp/iconr/src/Iconr/obj/Debug/net10.0/ref/Iconr.dll
