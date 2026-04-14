@@ -7,7 +7,7 @@ namespace Iconr;
 /// </summary>
 public enum Icon
 {
-   	acorn,
+	acorn,
 	address_book_tabs,
 	address_book,
 	air_traffic_control,
@@ -1521,5 +1521,4 @@ public enum Icon
 	yarn,
 	yin_yang,
 	youtube_logo
- 
 }

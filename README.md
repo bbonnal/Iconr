@@ -1,6 +1,10 @@
 # Iconr
 
+[![NuGet](https://img.shields.io/nuget/v/Iconr)](https://www.nuget.org/packages/Iconr)
+
 Lightweight icon library for [Avalonia UI](https://avaloniaui.net). Ships 1,500+ [Phosphor](https://phosphoricons.com) icons as embedded SVGs with strongly-typed enum access, XAML markup extensions, and zero runtime dependencies beyond Avalonia.
+
+**Requires .NET 8.0 or later.**
 
 ## Install
 
