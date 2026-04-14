@@ -48,45 +48,15 @@ jobs:
             dotnet pack -c Release --no-build -o ./artifacts
           fi
 
-      # OIDC exchange: get a GitHub-signed token, trade it for a temporary NuGet API key
-      - name: Obtain OIDC token
-        id: oidc
-        uses: actions/github-script@v7
+      - name: NuGet login (trusted publishing)
+        uses: NuGet/login@v1
+        id: nuget-login
         with:
-          script: |
-            const token = await core.getIDToken('https://www.nuget.org');
-            core.setSecret(token);
-            core.setOutput('token', token);
-
-      - name: Exchange OIDC token for NuGet API key
-        id: nuget
-        run: |
-          RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST \
-            "https://www.nuget.org/api/v2/token" \
-            -H "Authorization: Bearer ${{ steps.oidc.outputs.token }}" \
-            -H "Content-Type: application/x-www-form-urlencoded" \
-            -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange" \
-            -d "requested_token_type=urn:ietf:params:oauth:token-type:access_token" \
-            -d "actor_token=${{ secrets.NUGET_USER }}" \
-            -d "actor_token_type=urn:nuget:token-type:user")
-
-          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
-          BODY=$(echo "$RESPONSE" | sed '$d')
-
-          if [[ "$HTTP_CODE" != "200" ]]; then
-            echo "::error::NuGet token exchange failed (HTTP $HTTP_CODE): $BODY"
-            exit 1
-          fi
-
-          API_KEY=$(echo "$BODY" | jq -r '.access_token // .token // .apiKey // empty')
-          if [[ -z "$API_KEY" ]]; then
-            echo "::error::No API key in response. Body: $BODY"
-            exit 1
-          fi
-
-          echo "::add-mask::$API_KEY"
-          echo "api-key=$API_KEY" >> "$GITHUB_OUTPUT"
-          echo "Token exchange succeeded"
+          user: ${{ secrets.NUGET_USER }}
 
       - name: Push to NuGet.org
-        run: dotnet nuget push ./artifacts/*.nupkg --api-key "${{ steps.nuget.outputs.api-key }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: >
+          dotnet nuget push ./artifacts/*.nupkg
+          --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}"
+          --source https://api.nuget.org/v3/index.json
+          --skip-duplicate
