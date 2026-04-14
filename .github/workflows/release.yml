@@ -63,10 +63,9 @@ jobs:
         run: |
           RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST \
             "https://www.nuget.org/api/v2/token" \
+            -H "Authorization: Bearer ${{ steps.oidc.outputs.token }}" \
             -H "Content-Type: application/x-www-form-urlencoded" \
             -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange" \
-            -d "subject_token=${{ steps.oidc.outputs.token }}" \
-            -d "subject_token_type=urn:ietf:params:oauth:token-type:id-token" \
             -d "requested_token_type=urn:ietf:params:oauth:token-type:access_token" \
             -d "actor_token=${{ secrets.NUGET_USER }}" \
             -d "actor_token_type=urn:nuget:token-type:user")
